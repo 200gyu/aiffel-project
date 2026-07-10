@@ -1,0 +1,125 @@
+{
+  "program": {
+    "name": "아이펠(AIFFEL) AI 에이전트 과정",
+    "cohort": "1기",
+    "provider": "모두의연구소(Modulabs)",
+    "brand": "아이펠(AIFFEL)",
+    "tagline": "내 전공에 AI 에이전트를 더해, 취업 경쟁력을 완성합니다",
+    "official_url": "https://aiffel.io/ai-agent",
+    "summary": "기획·마케팅·디자인·영업·인사 등 자신의 전공과 경험 위에 AI 에이전트 개발 역량을 더해 실무형 포트폴리오를 완성하는 국비지원(KDT) 부트캠프.",
+    "target": "전공 무관. 자신의 전공/경험을 취업 경쟁력으로 확장하고 싶은 누구나",
+    "format": {
+      "delivery": "실시간 온라인 50% + 오프라인 50%",
+      "offline_location": "서울시민대학 다시가는캠퍼스 (서울 관악구)",
+      "class_hours": "평일 10:00 ~ 18:00",
+      "duration_weeks": 24
+    },
+    "tuition": {
+      "original_krw": 15246000,
+      "actual_krw": 0,
+      "support": "정부지원 국비무료(K-Digital Training)",
+      "training_allowance_krw": "최대 2,400,000원(훈련장려금)"
+    }
+  },
+  "learning_method": {
+    "philosophy": "노드 → 퀘스트 → 프로젝트로 이어지는 프로젝트 중심 액티브러닝",
+    "steps": [
+      "스스로 탐구하기: LMS/교재로 개념을 깊이 이해",
+      "함께 해결하기: 조별 퀘스트로 배운 내용을 실제로 적용하고 아이디어 공유",
+      "프로젝트: 실무형 프로세스(기획→개발→UX→피드백→배포)로 결과물 완성"
+    ]
+  },
+  "tech_stack": {
+    "web": ["Python", "HTML/CSS", "JavaScript", "Svelte", "Playwright", "Vercel"],
+    "ai": ["LLM 활용", "RAG(검색증강생성)", "프롬프트 엔지니어링", "AI 에이전트 설계"],
+    "tools": ["Claude Code / Skill", "OpenCode", "바이브 코딩"],
+    "advanced": ["Rust", "커스텀 LLM 모델 배포"]
+  },
+  "curriculum": [
+    {
+      "phase": "기초 다지기",
+      "weeks": "1-2주차",
+      "title": "온보딩 & 바이브 코딩",
+      "goals": ["교육 환경 적응", "AI에게 말하듯 코드를 만드는 바이브 코딩 실습"]
+    },
+    {
+      "phase": "기초 다지기",
+      "weeks": "3-4주차",
+      "title": "AI 모델 이해와 활용",
+      "goals": ["LLM 등 AI 모델의 원리 이해", "모델을 서비스에 활용하는 방법 학습"]
+    },
+    {
+      "phase": "기초 다지기",
+      "weeks": "5주차",
+      "title": "바이브코딩 실전 프로젝트",
+      "goals": ["프론트/백/DB를 통합한 풀스택 앱 만들어보기"]
+    },
+    {
+      "phase": "에이전트 심화",
+      "weeks": "6주차",
+      "title": "프롬프트 엔지니어링 마스터",
+      "goals": ["의도한 결과를 얻는 프롬프트 설계 기법 습득"]
+    },
+    {
+      "phase": "에이전트 심화",
+      "weeks": "7-8주차",
+      "title": "에이전트 기초 체력 다지기",
+      "goals": ["AI 에이전트의 구조와 동작 원리 이해", "도구(tool) 연동 기초"]
+    },
+    {
+      "phase": "에이전트 심화",
+      "weeks": "9-10주차",
+      "title": "에이전트 팀 꾸리기",
+      "goals": ["멀티 에이전트 협업 구조 설계", "역할 분담형 에이전트 구성"]
+    },
+    {
+      "phase": "에이전트 심화",
+      "weeks": "11-12주차",
+      "title": "에이전트 실전 프로젝트",
+      "goals": ["실사용 시나리오 기반 에이전트 개발"]
+    },
+    {
+      "phase": "프로덕션",
+      "weeks": "13-15주차",
+      "title": "AI 서비스 프로덕션",
+      "goals": ["실제 서비스 배포 및 운영 환경 경험"]
+    },
+    {
+      "phase": "프로덕션",
+      "weeks": "16-24주차",
+      "title": "에이전트 프로덕트 프로젝트 (파이널)",
+      "goals": [
+        "약 40일간 기획→개발→UX→피드백 반영→배포 전 과정 수행",
+        "면접에서 바로 시연 가능한 에이전트 포트폴리오 완성"
+      ]
+    }
+  ],
+  "project_examples": [
+    { "role": "마케팅", "project": "SNS 콘텐츠 제작 에이전트", "stack": ["Claude Code Skill"] },
+    { "role": "행정", "project": "업무 자동화 에이전트", "stack": ["Python", "Playwright"] },
+    { "role": "교육 운영", "project": "교육 점검 퀴즈 생성기", "stack": ["OpenCode", "Svelte"] },
+    { "role": "기획", "project": "프레젠테이션 제작 에이전트", "stack": ["Claude Code Skill"] },
+    { "role": "교육 운영", "project": "LMS 플랫폼", "stack": ["Claude Code", "Vercel"] },
+    { "role": "AI 엔지니어", "project": "멀티툴 AI 에이전트", "stack": ["Rust", "커스텀 LLM"] }
+  ],
+  "career_support": {
+    "during": [
+      "50명 현직자 네트워크 1:1 취업 멘토링(4회)",
+      "현직자 실무 인사이트 특강 및 포트폴리오 첨삭",
+      "모의면접 코칭"
+    ],
+    "after": [
+      "취업 축하금 최대 100만원",
+      "우수생 장학금 최대 100만원"
+    ]
+  },
+  "source": {
+    "note": "본 데이터는 아이펠 공식 페이지 정보를 바탕으로 정리했습니다.",
+    "references": [
+      "https://aiffel.io/ai-agent",
+      "https://aiffel.io/",
+      "https://modulabs.co.kr/"
+    ],
+    "last_updated": "2026-07-10"
+  }
+}
