@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>아이펠 AI 에이전트 과정 1기</title>
+<meta name="description" content="모두의연구소 아이펠(AIFFEL) AI 에이전트 과정 1기 교육과정 소개" />
+<style>
+  :root{
+    --bg:#0b0d17; --bg2:#11142330; --card:#161a2b; --card2:#1c2237;
+    --text:#e8eaf2; --muted:#9aa0b8; --line:#262c44;
+    --brand:#6366f1; --brand2:#8b5cf6; --accent:#22d3ee;
+    --c-base:#6366f1; --c-agent:#8b5cf6; --c-prod:#22d3ee;
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f6f7fb; --bg2:#ffffff; --card:#ffffff; --card2:#f2f3f9;
+      --text:#161a2b; --muted:#5b617a; --line:#e6e8f2;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+  .muted{color:var(--muted)}
+
+  /* HERO */
+  .hero{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(1200px 500px at 15% -10%, rgba(99,102,241,.35), transparent 60%),
+      radial-gradient(900px 500px at 90% 0%, rgba(139,92,246,.30), transparent 55%),
+      linear-gradient(180deg, #0b0d17, #0b0d17);
+    color:#fff; padding:84px 0 70px; border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .badge-top{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.4px;
+    padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);margin-bottom:22px}
+  .hero h1{font-size:clamp(30px,5.5vw,52px);line-height:1.18;font-weight:800;letter-spacing:-1px}
+  .hero h1 .grad{background:linear-gradient(90deg,#a5b4fc,#c4b5fd,#67e8f9);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.tag{margin-top:18px;font-size:clamp(16px,2.4vw,20px);color:#c7cbe0;max-width:640px}
+  .hero .cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;
+    padding:13px 22px;border-radius:12px;text-decoration:none;transition:.2s}
+  .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(99,102,241,.4)}
+  .btn.ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18)}
+  .btn.ghost:hover{background:rgba(255,255,255,.16)}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px}
+  .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;padding:18px 16px;backdrop-filter:blur(6px)}
+  .stat .k{font-size:12px;color:#aab0cc;font-weight:600;letter-spacing:.3px}
+  .stat .v{font-size:20px;font-weight:800;margin-top:6px;color:#fff}
+  .stat .v small{font-size:13px;font-weight:600;color:#c7cbe0}
+
+  /* SECTIONS */
+  section{padding:70px 0}
+  .eyebrow{color:var(--brand2);font-weight:700;font-size:13px;letter-spacing:1.2px;text-transform:uppercase}
+  h2.sec{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.6px;margin:8px 0 8px}
+  .lead{color:var(--muted);max-width:640px;margin-bottom:34px}
+
+  /* method cards */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .mcard .num{font-size:13px;font-weight:800;color:var(--brand2)}
+  .mcard h3{font-size:19px;font-weight:800;margin:8px 0 8px}
+  .mcard p{color:var(--muted);font-size:15px}
+
+  /* timeline */
+  .tl{display:flex;flex-direction:column;gap:14px}
+  .item{display:grid;grid-template-columns:132px 1fr;gap:20px;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;position:relative;overflow:hidden}
+  .item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c-base)}
+  .item.agent::before{background:var(--c-agent)} .item.prod::before{background:var(--c-prod)}
+  .item .wk{font-weight:800;font-size:15px}
+  .item .ph{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;padding:4px 10px;
+    border-radius:999px;background:var(--card2);color:var(--muted)}
+  .item h3{font-size:18px;font-weight:800;margin-bottom:6px}
+  .item p{color:var(--muted);font-size:14.5px;margin-bottom:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-size:12px;font-weight:600;padding:5px 11px;border-radius:8px;
+    background:var(--card2);color:var(--text);border:1px solid var(--line)}
+
+  /* tech */
+  .tech{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .tbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .tbox h4{font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .tbox .chips .chip{background:linear-gradient(180deg,var(--card2),transparent)}
+
+  /* projects */
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;transition:.2s}
+  .pcard:hover{transform:translateY(-3px);border-color:var(--brand)}
+  .pcard .role{font-size:12px;font-weight:800;color:var(--brand2);letter-spacing:.4px}
+  .pcard h3{font-size:17px;font-weight:800;margin:8px 0 12px}
+
+  /* career + admission */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .panel h3{font-size:17px;font-weight:800;margin-bottom:16px}
+  .li{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;color:var(--muted);font-size:15px}
+  .li b{color:var(--text);font-weight:700}
+  .li .mk{color:var(--brand2);font-weight:900;flex:none}
+  ol.steps{list-style:none;counter-reset:s}
+  ol.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;font-size:15px;color:var(--muted)}
+  ol.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;
+    background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;font-weight:800;
+    font-size:13px;display:flex;align-items:center;justify-content:center}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--muted);font-size:14px}
+  footer a{color:var(--brand2);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media (max-width:820px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .grid3,.pgrid,.tech,.two{grid-template-columns:1fr}
+    .item{grid-template-columns:1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge-top">🎓 모두의연구소 · 아이펠(AIFFEL)</span>
+    <h1>AI 에이전트 과정 <span class="grad">1기</span><br/>내 전공에 AI를 더하다</h1>
+    <p class="tag">기획·마케팅·디자인·영업·인사 — 내 전공과 경험 위에 <b>AI 에이전트 개발 역량</b>을 더해, 6개월 만에 실무형 포트폴리오를 완성하는 국비지원 부트캠프.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://aiffel.io/ai-agent" target="_blank" rel="noopener">공식 과정 페이지 ↗</a>
+      <a class="btn ghost" href="#curriculum">커리큘럼 보기</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">개강</div><div class="v">2026.07.08<br/><small>1기</small></div></div>
+      <div class="stat"><div class="k">기간</div><div class="v">약 24주<br/><small>6개월 · 평일 10–18시</small></div></div>
+      <div class="stat"><div class="k">방식</div><div class="v">온라인 50%<br/><small>+ 오프라인 50% (관악)</small></div></div>
+      <div class="stat"><div class="k">교육비</div><div class="v">0원<br/><small>국비지원 KDT</small></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 학습 방식 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Learning Method</div>
+    <h2 class="sec">배우는 방식</h2>
+    <p class="lead">아이펠은 강의를 듣기만 하지 않습니다. <b>노드 → 퀘스트 → 프로젝트</b>로 이어지는 프로젝트 중심 액티브러닝으로, 배운 것을 바로 만들어 봅니다.</p>
+    <div class="grid3">
+      <div class="mcard"><div class="num">STEP 01</div><h3>노드 (Node)</h3><p>LMS와 교재로 개념을 스스로 깊이 있게 파악하는 자기주도 학습 단위.</p></div>
+      <div class="mcard"><div class="num">STEP 02</div><h3>퀘스트 (Quest)</h3><p>조별 미션으로 배운 내용을 실제로 적용하고 팀원과 아이디어를 나눕니다.</p></div>
+      <div class="mcard"><div class="num">STEP 03</div><h3>프로젝트 (Project)</h3><p>기획 → 개발 → UX → 피드백 → 배포. 실무 프로세스로 결과물을 완성합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 커리큘럼 -->
+<section id="curriculum" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="eyebrow">Curriculum</div>
+    <h2 class="sec">24주 커리큘럼</h2>
+    <p class="lead">바이브 코딩으로 시작해, 프롬프트 엔지니어링과 에이전트 개발을 거쳐, 실제 서비스 배포와 40일 파이널 프로젝트로 마무리합니다.</p>
+    <div class="tl">
+
+      <div class="item"><div><div class="wk">1–2주차</div><span class="ph">기초 다지기</span></div>
+        <div><h3>온보딩 &amp; 바이브 코딩</h3><p>교육 환경에 적응하고, 복잡한 문법 대신 AI에게 말하듯 코드를 만드는 바이브 코딩을 익힙니다.</p>
+        <div class="chips"><span class="chip">개발 환경</span><span class="chip">Git/협업</span><span class="chip">AI 페어 프로그래밍</span><span class="chip">Claude Code</span></div></div></div>
+
+      <div class="item"><div><div class="wk">3–4주차</div><span class="ph">기초 다지기</span></div>
+        <div><h3>AI 모델 이해와 활용</h3><p>LLM을 비롯한 AI 모델의 동작 원리를 이해하고, API로 서비스에 연결하는 방법을 배웁니다.</p>
+        <div class="chips"><span class="chip">LLM 개념</span><span class="chip">토큰·컨텍스트</span><span class="chip">모델 API</span><span class="chip">입출력 설계</span></div></div></div>
+
+      <div class="item"><div><div class="wk">5주차</div><span class="ph">기초 다지기</span></div>
+        <div><h3>바이브코딩 실전 프로젝트</h3><p>프론트엔드·백엔드·데이터베이스를 통합한 풀스택 앱을 직접 만들어 봅니다.</p>
+        <div class="chips"><span class="chip">풀스택 구조</span><span class="chip">프론트/백 연동</span><span class="chip">DB 연결</span><span class="chip">배포 맛보기</span></div></div></div>
+
+      <div class="item agent"><div><div class="wk">6주차</div><span class="ph">에이전트 심화</span></div>
+        <div><h3>프롬프트 엔지니어링 마스터</h3><p>의도한 결과를 안정적으로 얻어내는 프롬프트 설계 기법을 집중적으로 다룹니다.</p>
+        <div class="chips"><span class="chip">역할·맥락 설계</span><span class="chip">Few-shot / CoT</span><span class="chip">출력 포맷 제어</span><span class="chip">평가·개선</span></div></div></div>
+
+      <div class="item agent"><div><div class="wk">7–8주차</div><span class="ph">에이전트 심화</span></div>
+        <div><h3>에이전트 기초 체력 다지기</h3><p>AI 에이전트의 구조와 동작 원리를 이해하고, 도구(tool) 연동의 기초를 익힙니다.</p>
+        <div class="chips"><span class="chip">에이전트 루프</span><span class="chip">Tool/Function Calling</span><span class="chip">RAG 기초</span><span class="chip">메모리·상태</span></div></div></div>
+
+      <div class="item agent"><div><div class="wk">9–10주차</div><span class="ph">에이전트 심화</span></div>
+        <div><h3>에이전트 팀 꾸리기</h3><p>여러 에이전트가 역할을 나눠 협업하는 멀티 에이전트 구조를 설계합니다.</p>
+        <div class="chips"><span class="chip">멀티 에이전트</span><span class="chip">오케스트레이션</span><span class="chip">에이전트 간 통신</span><span class="chip">워크플로</span></div></div></div>
+
+      <div class="item agent"><div><div class="wk">11–12주차</div><span class="ph">에이전트 심화</span></div>
+        <div><h3>에이전트 실전 프로젝트</h3><p>실사용 시나리오를 정해 동작하는 에이전트를 팀 단위로 개발합니다.</p>
+        <div class="chips"><span class="chip">문제 정의</span><span class="chip">에이전트 설계</span><span class="chip">도구 연동</span><span class="chip">테스트·개선</span></div></div></div>
+
+      <div class="item prod"><div><div class="wk">13–15주차</div><span class="ph">프로덕션</span></div>
+        <div><h3>AI 서비스 프로덕션</h3><p>만든 에이전트를 실제 서비스로 배포하고 운영하는 프로덕션 환경을 경험합니다.</p>
+        <div class="chips"><span class="chip">서비스 배포</span><span class="chip">모니터링·로깅</span><span class="chip">비용·성능</span><span class="chip">안정적 운영</span></div></div></div>
+
+      <div class="item prod"><div><div class="wk">16–24주차</div><span class="ph">프로덕션 · 파이널</span></div>
+        <div><h3>에이전트 프로덕트 프로젝트 (파이널)</h3><p>약 40일간 기획부터 배포까지 전 과정을 수행해, 면접에서 바로 시연 가능한 포트폴리오를 완성합니다.</p>
+        <div class="chips"><span class="chip">제품 기획</span><span class="chip">개발·구현</span><span class="chip">UX·피드백</span><span class="chip">최종 배포·시연</span></div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 기술 스택 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Tech Stack</div>
+    <h2 class="sec">다루는 기술</h2>
+    <p class="lead">웹 개발 기초부터 최신 AI 에이전트 기술, 그리고 커스텀 모델 배포까지.</p>
+    <div class="tech">
+      <div class="tbox"><h4><span class="dot" style="background:var(--brand)"></span>웹 개발</h4>
+        <div class="chips"><span class="chip">Python</span><span class="chip">HTML/CSS</span><span class="chip">JavaScript</span><span class="chip">Svelte</span><span class="chip">Playwright</span><span class="chip">Vercel</span></div></div>
+      <div class="tbox"><h4><span class="dot" style="background:var(--brand2)"></span>AI 기술</h4>
+        <div class="chips"><span class="chip">LLM 활용</span><span class="chip">RAG</span><span class="chip">프롬프트 엔지니어링</span><span class="chip">에이전트 설계</span></div></div>
+      <div class="tbox"><h4><span class="dot" style="background:var(--accent)"></span>도구</h4>
+        <div class="chips"><span class="chip">Claude Code / Skill</span><span class="chip">OpenCode</span><span class="chip">바이브 코딩</span></div></div>
+      <div class="tbox"><h4><span class="dot" style="background:#f472b6"></span>고급</h4>
+        <div class="chips"><span class="chip">Rust</span><span class="chip">커스텀 LLM 배포</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 프로젝트 -->
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="eyebrow">Projects</div>
+    <h2 class="sec">직무별 프로젝트 예시</h2>
+    <p class="lead">내 직무·전공에 맞춘 에이전트를 만듭니다. 실제 수강생 프로젝트 유형 예시입니다.</p>
+    <div class="pgrid">
+      <div class="pcard"><div class="role">마케팅</div><h3>SNS 콘텐츠 제작 에이전트</h3><div class="chips"><span class="chip">Claude Code Skill</span></div></div>
+      <div class="pcard"><div class="role">행정</div><h3>업무 자동화 에이전트</h3><div class="chips"><span class="chip">Python</span><span class="chip">Playwright</span></div></div>
+      <div class="pcard"><div class="role">교육 운영</div><h3>교육 점검 퀴즈 생성기</h3><div class="chips"><span class="chip">OpenCode</span><span class="chip">Svelte</span></div></div>
+      <div class="pcard"><div class="role">기획</div><h3>프레젠테이션 제작 에이전트</h3><div class="chips"><span class="chip">Claude Code Skill</span></div></div>
+      <div class="pcard"><div class="role">교육 운영</div><h3>LMS 플랫폼</h3><div class="chips"><span class="chip">Claude Code</span><span class="chip">Vercel</span></div></div>
+      <div class="pcard"><div class="role">AI 엔지니어</div><h3>멀티툴 AI 에이전트</h3><div class="chips"><span class="chip">Rust</span><span class="chip">커스텀 LLM</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 취업 지원 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Career</div>
+    <h2 class="sec">취업 지원</h2>
+    <p class="lead">수강 중 밀착 지원부터 수료 후 혜택까지 이어집니다.</p>
+    <div class="two">
+      <div class="panel"><h3>수강 중</h3>
+        <div class="li"><span class="mk">✓</span><span>50명 <b>현직자 네트워크</b> 1:1 취업 멘토링 (4회)</span></div>
+        <div class="li"><span class="mk">✓</span><span>현직자 실무 인사이트 특강 &amp; <b>포트폴리오 첨삭</b></span></div>
+        <div class="li"><span class="mk">✓</span><span>모의면접 코칭</span></div>
+      </div>
+      <div class="panel"><h3>수료 후</h3>
+        <div class="li"><span class="mk">★</span><span>취업 축하금 <b>최대 100만원</b></span></div>
+        <div class="li"><span class="mk">★</span><span>우수생 장학금 <b>최대 100만원</b></span></div>
+        <div class="li"><span class="mk">★</span><span>훈련장려금 <b>최대 240만원</b> (정부 지원)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 지원 안내 -->
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="eyebrow">Admission</div>
+    <h2 class="sec">지원 안내</h2>
+    <p class="lead">전공 무관 · 국민내일배움카드 발급 대상자라면 누구나 지원할 수 있습니다.</p>
+    <div class="two">
+      <div class="panel"><h3>지원 프로세스</h3>
+        <ol class="steps">
+          <li>지원서 제출</li>
+          <li>서면 인터뷰 (지원 동기 및 경험 기술)</li>
+          <li>최종 합격 발표 (3일 이내)</li>
+          <li>고용24 수강 신청</li>
+        </ol>
+      </div>
+      <div class="panel"><h3>지원 자격</h3>
+        <div class="li"><span class="mk">·</span><span>국민내일배움카드 발급 대상자</span></div>
+        <div class="li"><span class="mk">·</span><span>6개월 전 과정 참여 가능자</span></div>
+        <div class="li"><span class="mk">·</span><span>평일 10:00~18:00 실시간 참여 가능자</span></div>
+        <div class="li"><span class="mk">·</span><span>AI 분야 취업·이직 희망자</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>아이펠(AIFFEL) AI 에이전트 과정 1기 소개</b> · 모두의연구소</p>
+    <p style="margin-top:8px">본 페이지는 아이펠 공식 정보를 바탕으로 정리했습니다. (최종 업데이트: 2026-07-10)</p>
+    <p style="margin-top:8px">출처:
+      <a href="https://aiffel.io/ai-agent" target="_blank" rel="noopener">aiffel.io/ai-agent</a> ·
+      <a href="https://aiffel.io/" target="_blank" rel="noopener">aiffel.io</a> ·
+      <a href="https://modulabs.co.kr/" target="_blank" rel="noopener">modulabs.co.kr</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
