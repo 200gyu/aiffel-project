@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>오목 (Gomoku)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div id="status" class="status black-turn">
+      <span class="stone-indicator"></span>
+      <span id="status-text">흑돌 차례</span>
+    </div>
+    <div class="board-wrapper">
+      <canvas id="board"></canvas>
+    </div>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <p id="modal-message" class="modal-message"></p>
+      <button id="btn-restart" class="btn-restart">다시하기</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

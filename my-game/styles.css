@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #2c2c2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  user-select: none;
+}
+
+.status.black-turn {
+  background: #1a1a1a;
+  color: #fff;
+  box-shadow: 0 0 0 3px #555;
+}
+
+.status.white-turn {
+  background: #f0f0f0;
+  color: #1a1a1a;
+  box-shadow: 0 0 0 3px #bbb;
+}
+
+.stone-indicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.black-turn .stone-indicator {
+  background: radial-gradient(circle at 35% 30%, #555, #111);
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+}
+
+.white-turn .stone-indicator {
+  background: radial-gradient(circle at 35% 30%, #fff, #ccc);
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+}
+
+.board-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 560px;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 48px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  animation: scaleIn 0.3s ease;
+}
+
+.modal-message {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+}
+
+.btn-restart {
+  padding: 12px 36px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  background: #E6A15C;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-restart:hover {
+  background: #d4903e;
+}
+
+.btn-restart:active {
+  transform: scale(0.96);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px 8px;
+    gap: 12px;
+  }
+  .status {
+    font-size: 16px;
+    padding: 8px 18px;
+  }
+  .modal {
+    padding: 28px 24px;
+    margin: 0 16px;
+  }
+  .modal-message {
+    font-size: 22px;
+  }
+}
