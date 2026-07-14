@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>미니 3매치 퍼즐 🐱🐶🐰🦊🐻</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="game-wrapper">
+    <header class="hud">
+      <div class="hud-item">
+        <span class="hud-label">SCORE</span>
+        <span id="score" class="hud-value">0</span>
+      </div>
+      <h1 class="game-title">미니 3매치 🐾</h1>
+      <div class="hud-item">
+        <span class="hud-label">TIME</span>
+        <span id="timer" class="hud-value">60</span>
+      </div>
+    </header>
+
+    <main class="board-area">
+      <div id="game-board" class="game-board"></div>
+    </main>
+
+    <!-- 게임 종료 결과 모달 -->
+    <div id="result-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>게임 종료!</h2>
+        <p class="final-score-label">최종 점수</p>
+        <p id="final-score" class="final-score">0</p>
+        <button id="reset-btn" class="reset-btn">다시하기 🔄</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

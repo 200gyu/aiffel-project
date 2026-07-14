@@ -1,0 +1,231 @@
+/* ==========================================================
+   전체 레이아웃 & 파스텔 배경
+   ========================================================== */
+:root {
+  --grid-size: 7;
+  --cell-gap: 4px;
+  --board-bg: #fdf6ec;
+  --cell-bg: #ffffff;
+  --accent: #ff8fab;
+  --text-dark: #5b4b45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Trebuchet MS", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: linear-gradient(160deg, #ffe8f0 0%, #e8f4ff 50%, #fff6e0 100%);
+  color: var(--text-dark);
+  padding: 16px;
+}
+
+.game-wrapper {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ==========================================================
+   상단 HUD (점수 / 타이머)
+   ========================================================== */
+.hud {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffffb3;
+  border-radius: 18px;
+  padding: 10px 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.game-title {
+  font-size: 1.1rem;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+}
+
+.hud-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: #a89b93;
+}
+
+.hud-value {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+/* ==========================================================
+   게임 보드 (반응형 7x7 그리드)
+   ========================================================== */
+.board-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.game-board {
+  --board-max: min(92vw, 460px);
+  width: var(--board-max);
+  height: var(--board-max);
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-template-rows: repeat(var(--grid-size), 1fr);
+  gap: var(--cell-gap);
+  background: var(--board-bg);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  touch-action: none;
+  user-select: none;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cell-bg);
+  border-radius: 10px;
+  font-size: clamp(1.1rem, 5.2vw, 1.8rem);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.cell:active {
+  transform: scale(0.92);
+}
+
+/* 선택된 블록 표시: 테두리 + 살짝 흔들리는 효과 */
+.cell.selected {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+  background: #fff0f5;
+  animation: wiggle 0.35s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-4deg) scale(1.05); }
+  50% { transform: rotate(4deg) scale(1.05); }
+}
+
+/* 스왑했지만 매치 실패 -> 되돌아갈 때 흔드는 효과 */
+.cell.invalid-swap {
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* 매치되어 터지는 연출: 커지다가 작아지며 페이드아웃 */
+.cell.matched {
+  animation: pop 0.28s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); opacity: 1; }
+  40% { transform: scale(1.25); opacity: 0.9; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* 새로 채워진 블록이 위에서 떨어지는 느낌의 진입 효과 */
+.cell.dropped {
+  animation: dropIn 0.25s ease;
+}
+
+@keyframes dropIn {
+  0% { transform: translateY(-30px); opacity: 0.4; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================================================
+   결과 모달
+   ========================================================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(60, 40, 40, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fffaf3;
+  border-radius: 20px;
+  padding: 32px 28px;
+  text-align: center;
+  width: min(80vw, 320px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--text-dark);
+}
+
+.final-score-label {
+  margin: 8px 0 2px;
+  color: #a89b93;
+  font-size: 0.85rem;
+}
+
+.final-score {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+
+.reset-btn {
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  padding: 10px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 143, 171, 0.4);
+  transition: transform 0.15s ease;
+}
+
+.reset-btn:active {
+  transform: scale(0.95);
+}
+
+/* 작은 화면 대응 */
+@media (max-width: 380px) {
+  .game-title {
+    font-size: 0.95rem;
+  }
+  .hud-value {
+    font-size: 1.15rem;
+  }
+}
